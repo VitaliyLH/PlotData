@@ -1,0 +1,22 @@
+#!bin/bash
+
+rm -rf Results
+
+rm -rf *Approx*
+
+mkdir Results
+
+bash GetResults
+
+./PlotPack/Approximations order sf Stiffness.dat
+./PlotPack/Approximations order co StructureFactor.dat
+./PlotPack/Approximations order co StructureFactorApprox.dat
+./PlotPack/Approximations order co StructureFactorApproxApprox.dat
+
+gnuplot ./PlotPack/Energy
+gnuplot ./PlotPack/Stiffness
+gnuplot ./PlotPack/StructureFactor
+gnuplot ./PlotPack/Sz
+gnuplot ./PlotPack/P0
+
+cp -r *png -t Results

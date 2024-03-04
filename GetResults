@@ -1,0 +1,15 @@
+#!bin/bash
+
+rm -rf P0.dat
+rm -rf Output.dat
+rm -rf Stiffness.dat
+rm -rf StructureFactor.dat
+
+for (( i=1; i<=50; i++ ))
+
+do
+   cat ${i}P0.dat >> P0.dat
+   cat ${i}Output.dat >> Output.dat
+   cat ${i}Stiffness.dat >> Stiffness.dat
+   cat ${i}StructureFactor.dat >> StructureFactor.dat
+done

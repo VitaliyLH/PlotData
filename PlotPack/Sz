@@ -1,0 +1,25 @@
+set terminal png
+set output "Sz.png"
+
+set multiplot
+
+set xtics  norangelimit autofreq 
+set ytics  norangelimit autofreq 
+set xlabel "T"
+set xrange [  0 :  2.5 ] noreverse nowriteback
+set yrange [ -1 : 1 ] noreverse nowriteback
+
+
+set key right
+
+unset key
+set key right
+set key spacing 6
+
+plot 'Output.dat' u ($1/4):6 with lines lw 6 lt rgbcolor "red" title  'SzA'
+
+unset key
+set key right
+set key spacing 10
+
+plot 'Output.dat' u ($1/4):8 with lines lw 6 lt rgbcolor "blue" title  'SzB'

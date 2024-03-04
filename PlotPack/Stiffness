@@ -1,0 +1,19 @@
+set terminal png
+set output "Stiffness.png"
+
+set multiplot
+
+set xtics  norangelimit autofreq 
+set ytics  norangelimit autofreq 
+set xlabel "T"
+set xrange [ 0 : 2.5 ] noreverse nowriteback
+set yrange [ 0 : 1 ] noreverse nowriteback
+
+
+set key right
+
+unset key
+set key right
+set key spacing 6
+
+plot 'Stiffness.dat' u ($1/4):2 with lines lw 6 lt rgbcolor "blue" title  'SGF'

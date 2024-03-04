@@ -1,0 +1,51 @@
+#/bin/sh
+
+rm -rf *Tc.dat *Derivative* *Approx*
+
+for (( x=0; x <= 570; x+=10 )) 
+
+do 
+    cd ${x}  
+    echo -n ${x} >> StiffnessTc.dat
+    echo  >> StiffnessTc.dat
+    echo -n ${x} >> StructureFactorTc.dat
+    echo >> StructureFactorTc.dat
+    echo -n ${x} >> StructureFactorApproxTc.dat
+    echo >> StructureFactorApproxTc.dat
+    echo -n ${x} >> StructureFactorApproxApproxTc.dat
+    echo >> StructureFactorApproxApproxTc.dat
+    cd ..
+done
+
+for (( x=0; x <= 570; x+=10 )) 
+
+do 
+    cat ./${x}/StiffnessTc.dat >> StiffnessTc.dat
+    cat ./${x}/StructureFactorTc.dat >> StructureFactorTc.dat 
+    cat ./${x}/StructureFactorApproxTc.dat >> StructureFactorApproxTc.dat 
+    cat ./${x}/StructureFactorApproxApproxTc.dat >> StructureFactorApproxApproxTc.dat 
+done
+
+mv StiffnessTc.dat SF.dat
+mv StructureFactorTc.dat CO.dat
+mv StructureFactorApproxTc.dat CO1.dat
+mv StructureFactorApproxApproxTc.dat CO2.dat
+
+./PlotPack/Approximations noorder sf SF.dat
+./PlotPack/Approximations noorder sf SFApprox.dat
+./PlotPack/Approximations noorder co CO.dat
+./PlotPack/Approximations noorder co CO1.dat
+./PlotPack/Approximations noorder co CO2.dat
+./PlotPack/Approximations noorder co COApprox.dat
+./PlotPack/Approximations noorder co CO1Approx.dat
+./PlotPack/Approximations noorder co CO2Approx.dat 
+
+gnuplot ./PlotPack/Tc
+gnuplot ./PlotPack/Tc1
+gnuplot ./PlotPack/Tc2
+gnuplot ./PlotPack/TcApprox
+gnuplot ./PlotPack/Tc1Approx
+gnuplot ./PlotPack/Tc2Approx
+gnuplot ./PlotPack/TcApproxApprox
+gnuplot ./PlotPack/Tc1ApproxApprox
+gnuplot ./PlotPack/Tc2ApproxApprox

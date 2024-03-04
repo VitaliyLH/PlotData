@@ -1,0 +1,31 @@
+set terminal png
+set output "StructureFactor.png"
+
+set multiplot
+
+set xtics  norangelimit autofreq 
+set ytics  norangelimit autofreq 
+set xlabel "T"
+set xrange [ 0 : 2.5 ] noreverse nowriteback
+set yrange [ 0 : 1 ] noreverse nowriteback
+
+
+set key right
+
+unset key
+set key right
+set key spacing 6
+
+plot 'StructureFactor.dat' u ($1/4):2 with lines lw 6 lt rgbcolor "blue" title  'SGF'
+
+unset key
+set key right
+set key spacing 10
+
+plot 'StructureFactorApprox.dat' u ($1/4):2 with lines lw 6 lt rgbcolor "red" title  'Approx 1'
+
+unset key
+set key right
+set key spacing 14
+
+plot 'StructureFactorApproxApprox.dat' u ($1/4):2 with lines lw 6 lt rgbcolor "green" title  'Approx 2'

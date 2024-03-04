@@ -1,0 +1,23 @@
+#/bin/sh
+
+mkdir tmp
+
+rm -rf Diagram
+
+mkdir Diagram
+
+for (( i=1; i <= 50; i+=1 )) 
+
+do 
+   cut -c -17 ./${i}LocalSz.dat > ./tmp/${i}.dat
+done
+
+for (( i=1; i <= 50; i+=1 ))
+
+do 
+   ./PlotPack/SimpleDiagram ./tmp/${i}.dat
+done
+
+cp -r ./tmp/*.jpg -t ./Diagram
+
+rm -rf tmp

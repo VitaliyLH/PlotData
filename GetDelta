@@ -1,0 +1,16 @@
+#!bin/bash
+
+for (( Delta=8; Delta<=8; Delta+=2 ))
+
+do
+   cp -r PlotPack -t ${Delta}
+   cp GetDiagram -t ${Delta}
+   cp GetResults -t ${Delta}
+   cp GetPlot -t ${Delta}
+   cp GetTc -t ${Delta}
+   cp GetXXX -t ${Delta}
+   cd ${Delta}
+   bash GetXXX
+   bash GetTc
+   cd ..
+done
